@@ -60,7 +60,7 @@ public class ChatActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener{
 
 
-    public static class MessageViewHolder extends RecyclerView.ViewHolder {
+    /*public static class MessageViewHolder extends RecyclerView.ViewHolder {
         public TextView messageTextView;
         public TextView messengerTextView;
         public CircleImageView messengerImageView;
@@ -71,7 +71,7 @@ public class ChatActivity extends AppCompatActivity implements
             messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
             messengerImageView = (CircleImageView) itemView.findViewById(R.id.messengerImageView);
         }
-    }
+    }*/
 
     private static final String TAG = "MainActivity";
     public static final String MESSAGES_CHILD = "messages";
@@ -86,7 +86,7 @@ public class ChatActivity extends AppCompatActivity implements
     private Button mSendButton;
     private RecyclerView mMessageRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
-    private FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder> mFirebaseAdapter;
+    private FirebaseRecyclerAdapter<FriendlyMessage, ChatItemViewHolder> mFirebaseAdapter;
     private ProgressBar mProgressBar;
     private DatabaseReference mFirebaseDatabaseReference;
     private FirebaseAuth mFirebaseAuth;
@@ -129,16 +129,30 @@ public class ChatActivity extends AppCompatActivity implements
         mLinearLayoutManager.setStackFromEnd(true);
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder>(
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, ChatItemViewHolder>(
                 FriendlyMessage.class,
                 R.layout.item_message,
-                MessageViewHolder.class,
+                ChatItemViewHolder.class,
                 mFirebaseDatabaseReference.child(MESSAGES_CHILD)) {
 
+            /**
+             * Each time the data at the given Firebase location changes, this method will be called for each item that needs
+             * to be displayed. The first two arguments correspond to the mLayout and mModelClass given to the constructor of
+             * this class. The third argument is the item's position in the list.
+             * <p/>
+             * Your implementation should populate the view using the data contained in the model.
+             *
+             * @param viewHolder The view to populate
+             * @param model      The object containing the data used to populate the view
+             * @param position   The position in the list of the view being populated
+             */
             @Override
-            protected void populateViewHolder(MessageViewHolder viewHolder, FriendlyMessage friendlyMessage, int position) {
+            protected void populateViewHolder(ChatItemViewHolder viewHolder, FriendlyMessage friendlyMessage, int position) {
                 mProgressBar.setVisibility(ProgressBar.INVISIBLE);
-                viewHolder.messageTextView.setText(friendlyMessage.getText());
+                viewHolder.bind(friendlyMessage);
+
+
+                /*viewHolder.messageTextView.setText(friendlyMessage.getText());
                 viewHolder.messengerTextView.setText(friendlyMessage.getName());
                 if (friendlyMessage.getPhotoUrl() == null) {
                     viewHolder.messengerImageView.setImageDrawable(ContextCompat.getDrawable(ChatActivity.this,
@@ -147,7 +161,7 @@ public class ChatActivity extends AppCompatActivity implements
                     Glide.with(ChatActivity.this)
                             .load(friendlyMessage.getPhotoUrl())
                             .into(viewHolder.messengerImageView);
-                }
+                }*/
             }
         };
 

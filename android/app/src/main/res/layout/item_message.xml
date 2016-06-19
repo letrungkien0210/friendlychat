@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="viewModel"
@@ -17,10 +18,11 @@
             android:gravity="center_vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/messengerImageView"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:id="@+id/messengerImageView"
-                android:src="@drawable/ic_account_circle_black_36dp"/>
+                android:src="@drawable/ic_account_circle_black_36dp"
+                app:avatar="@{viewModel.avatar}" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -34,14 +36,16 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:id="@+id/messageTextView"
-                    android:layout_weight="0"/>
+                    android:layout_weight="0"
+                    android:text="@{viewModel.text}"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:id="@+id/messengerTextView"
-                    android:layout_weight="0"/>
+                    android:layout_weight="0"
+                    android:text="@{viewModel.name}"/>
             </LinearLayout>
 
         </LinearLayout>

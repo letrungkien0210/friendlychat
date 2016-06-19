@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.google.firebase.codelab.friendlychat.R;
 import com.google.firebase.codelab.friendlychat.databinding.ItemMessageBinding;
+import com.google.firebase.codelab.friendlychat.mvvm.model.FriendlyMessage;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -25,6 +26,10 @@ public class ChatItemViewHolder extends RecyclerView.ViewHolder {
         mViewModel = new ChatItemViewModel();
         mBinding = DataBindingUtil.bind(itemView);
         mBinding.setViewModel(mViewModel);
+    }
 
+    public  void bind(FriendlyMessage message){
+        //Model sycn with UI
+        mViewModel.bind(message);
     }
 }
