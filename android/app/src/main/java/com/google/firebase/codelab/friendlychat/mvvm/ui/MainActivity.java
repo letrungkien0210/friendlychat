@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity{
             // Not signed in, launch the Sign In activity
             intent = new Intent(this, SignInActivity.class);
         } else {
-            intent = new Intent(this, ChatActivity.class)
+            intent = new Intent(this, ChatActivity.class);
         }
 
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
