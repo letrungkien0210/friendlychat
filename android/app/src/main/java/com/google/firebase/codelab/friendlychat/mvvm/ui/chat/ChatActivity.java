@@ -2,6 +2,7 @@ package com.google.firebase.codelab.friendlychat.mvvm.ui.chat;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -36,6 +37,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.codelab.friendlychat.R;
+import com.google.firebase.codelab.friendlychat.databinding.ActivitySignInBinding;
 import com.google.firebase.codelab.friendlychat.mvvm.config.CodelabPreferences;
 import com.google.firebase.codelab.friendlychat.mvvm.model.FriendlyMessage;
 import com.google.firebase.codelab.friendlychat.mvvm.ui.signin.SignInActivity;
@@ -94,9 +96,12 @@ public class ChatActivity extends AppCompatActivity implements
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private GoogleApiClient mGoogleApiClient;
 
+    private ActivitySignInBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
         setContentView(R.layout.activity_main);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
