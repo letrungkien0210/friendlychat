@@ -2,6 +2,7 @@ package com.google.firebase.codelab.friendlychat.mvvm;
 
 import android.app.Application;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 
 /**
@@ -22,6 +23,9 @@ public class App extends Application {
 
         super.onCreate();
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        if(!FirebaseApp.getApps(this).isEmpty()){
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        }
+
     }
 }
