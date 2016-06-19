@@ -9,9 +9,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".mvvm.App"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.google.firebase.codelab.friendlychat.MainActivity">
+        <activity android:name=".mvvm.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,10 +20,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SignInActivity" />
+        <activity android:name=".mvvm.ui.signin.SignInActivity" />
+        <activity android:name=".mvvm.ui.chat.ChatActivity"/>
 
         <service
-            android:name=".MyFirebaseMessagingService"
+            android:name=".mvvm.service.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -30,7 +32,7 @@
         </service>
 
         <service
-            android:name=".MyFirebaseInstanceIdService"
+            android:name=".mvvm.service.MyFirebaseInstanceIdService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
