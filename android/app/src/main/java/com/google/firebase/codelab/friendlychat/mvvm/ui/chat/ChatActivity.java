@@ -37,6 +37,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.codelab.friendlychat.R;
+import com.google.firebase.codelab.friendlychat.databinding.ActivityMainBinding;
 import com.google.firebase.codelab.friendlychat.databinding.ActivitySignInBinding;
 import com.google.firebase.codelab.friendlychat.mvvm.config.CodelabPreferences;
 import com.google.firebase.codelab.friendlychat.mvvm.model.FriendlyMessage;
@@ -96,11 +97,14 @@ public class ChatActivity extends AppCompatActivity implements
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private GoogleApiClient mGoogleApiClient;
 
-    private ActivitySignInBinding mBinding;
+    private ActivityMainBinding mBinding;
+    private ChatViewModel mViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mViewModel = new ChatViewModel();
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mBinding.setViewModel(mViewModel);
 
         setContentView(R.layout.activity_main);
 
