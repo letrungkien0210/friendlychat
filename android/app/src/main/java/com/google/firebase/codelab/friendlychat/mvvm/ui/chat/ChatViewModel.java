@@ -5,5 +5,6 @@ import com.google.firebase.codelab.friendlychat.mvvm.ui.base.BaseViewModel;
 /**
  * Created by VTCA on 6/19/2016.
  */
-public class ChatViewModel extends BaseViewModel {
+public class
+ChatViewModel extends BaseViewModel {
 }

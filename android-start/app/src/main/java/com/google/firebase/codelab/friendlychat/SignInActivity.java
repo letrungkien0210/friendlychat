@@ -103,6 +103,9 @@ public class SignInActivity extends AppCompatActivity implements
                 //Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
+            }else{
+                //Google Sign In failed
+                Log.e(TAG, "Google Sign In failed.");
             }
         }
 
